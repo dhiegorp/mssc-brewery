@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 /**
@@ -29,7 +30,7 @@ public class BeerControllerV2 {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody BeerDtoV2 beer) {
+    public ResponseEntity create(@Valid @RequestBody BeerDtoV2 beer) {
         BeerDtoV2 beerDto = beerService.createBeer(beer);
 
         HttpHeaders headers = new HttpHeaders();
@@ -40,7 +41,7 @@ public class BeerControllerV2 {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable("id") UUID id, @RequestBody BeerDtoV2 beer) {
+    public ResponseEntity update(@PathVariable("id") UUID id, @Valid @RequestBody BeerDtoV2 beer) {
         beerService.update(id, beer);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
