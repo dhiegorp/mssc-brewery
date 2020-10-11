@@ -56,7 +56,7 @@ public class BeerController {
         beerService.deleteById(id);
     }
 
-    @MSSCExceptionHandler(ConstraintViolationException.class)
+    @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<List> validationErrorHandler(ConstraintViolationException e) {
         List<String> errors  = new ArrayList<>(e.getConstraintViolations().size());
 
