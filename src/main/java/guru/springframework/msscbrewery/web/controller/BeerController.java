@@ -3,7 +3,6 @@ package guru.springframework.msscbrewery.web.controller;
 import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,7 +56,7 @@ public class BeerController {
         beerService.deleteById(id);
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
+    @MSSCExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<List> validationErrorHandler(ConstraintViolationException e) {
         List<String> errors  = new ArrayList<>(e.getConstraintViolations().size());
 
